@@ -13,7 +13,7 @@
             <form action="https://google.com/search">
                 <label>
                     Query: <br /> 
-                    <input type="text" name="q" value="" autofocus style="width: 100%;"/>
+                    <input type="text" id="query" name="q" value="" autofocus style="width: 100%;"/>
                 </label>
             </form>
 
@@ -25,7 +25,7 @@
                     (Because someone at Google, in all their wisdom, has decided that you lack the intelligence to determine what a new tab should look like.)
                 </li>
                 <li>
-                    Make this page as your new tab URL. 
+                    Make this page your new tab URL. 
                 </li>
                 <li>
                     Open a new tab with a keyboard shortcut. The default is ctrl+t, unless you're a mac user.
@@ -38,5 +38,10 @@
                 </li>
             </ol>
         </main>
+        <script>
+        window.onload = function() {
+            document.getElementById('query').focus();
+        }
+        </script>
     </body>
 </html>
