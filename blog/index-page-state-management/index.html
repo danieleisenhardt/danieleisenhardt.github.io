@@ -9,7 +9,7 @@
         <main>
             <h1>Index Page State Management</h1>
             <aside>
-                n.b. read parts in <i>cursive</i> font in an irritated, sarcastic, voice<br />
+                n.b. read parts in <i>cursive</i> font in an irritated, sarcastic voice<br />
                 or skip them if you don't like my sense of humor
             </aside>
             <p>
@@ -17,73 +17,73 @@
                 The majority of the actions in these application are Create, Read, Update, Delete (CRUD).
             </p>
             <p>
-                User interfaces reflect this too. The menu has a button labeled "things", 
+                User interfaces reflect this too. The menu has a button labeled "things" 
                 which takes the user to an 'index page'. 
-                This index page has a button to <b>create</b> a new "thing", 
-                a list of the "things" which the user can <b>read</b>, 
-                and buttons next to each individual "thing" to <b>update</b> and <b>delete</b> that specific "thing". 
+                This index page has a button to <b>create</b> a new [thing], 
+                a list of [things], which the user can <b>read</b>, 
+                and buttons next to each individual [thing] to <b>update</b> and <b>delete</b> that specific "thing". 
             </p>
             <p>
-                This is the way web application are. There is nothing wrong with that.
+                This is the way web applications are. There is nothing wrong with that.
                 Times when UX designers deviate from this pattern are the times your users start to hate your interface.
                 This is not to say interface design is easy or unnecessary. 
                 Someone has to determine important stuff such as 
-                <a href="http://hipsterhitler.com/comics/05_typewriter.jpg" target="_blank">which font to use</a> 
+                <a href="http://hipsterhitler.com/comics/05_typewriter.jpg" target="_blank">which fonts to use</a> 
                 and what color the buttons must be. 
             </p>
             <p>
-                In order to not present the user with a page with 10.000+ "things" on it, 
+                In order not to present the user with a page with 10,000+ [things] on it 
                 <i>and simultaneously bankrupt the company with cloud hosting bills</i>, 
-                there is a set of common solutions that most people agree upon: <br />
-                filter, sort, paginate.
+                there is a set of common solutions that most people agree upon: 
+                Filter, Sort, Paginate.
             </p>
             <p>
-                If you implement these features, <b>in that order</b>, you will not go wrong.
+                If you implement these features <b>in that order</b>, you will not go wrong.
             </p>
             <a href="img/crud.png" target="_blank">
                 <img src="img/crud.png" />
             </a>
             <p>
-                Firstly, the user can narrow the results down. Usually by typing into a search box.
-                In the past each property of "thing" had it's own search box, 
-                but our UX designer colleagues in all their wisdom have decided this is way to difficult
+                Firstly, the user can usually narrow the results down by typing into a search box.
+                In the past, each property of [thing] had its own search box, 
+                but our UX designer colleagues in all their wisdom have decided this was way too difficult
                 for the user to understand. 
             </p>
             <p><i>
                 The company will just have to eat the cloud hosting bill and do a database lookup
-                on all properties. Or add elasticsearch to your stack, like a proper developer.
-                Or use Algolia, because elasticsearch is hard and you are busy. 
+                on all properties ... or add Elasticsearch to your stack (like a proper developer) ...
+                or use Algolia because Elasticsearch is hard and you are busy. 
                 And now all of your company's profit margins go directly to Algolia and you should
-                have just used elasticsearch, like a proper developer. 
+                have just used Elasticsearch (like a proper developer). 
             </i></p>
             <p><i>
-                Wait, where was I going with this? Right, you let your user filter the "things" on the index page.
+                Wait, where was I going with this? Right, you let your user filter the [things] on the index page.
                 Implementation details are their own seperate headache and you will burn that bridge when you come to it.
             </i></p>
             <p>
-                Secondly, the user can sort the "things" by a property. 
-                For example: the "things" are people and the user decides to sort them by email in descending alphabetical order.
+                Secondly, the user can sort the [things] by a property. 
+                For example, the [things] are people and the user decides to sort them by email in descending alphabetical order.
                 This is easy.
             </p>
             <p>
-                Lastly, the index page is paginated. <br />
+                Lastly, the index page is paginated. 
+                These are the little 1, 2, 3, 4, 5 page numbers at the top and bottom of the page
+                that lead you to all these other pages you never look at.
             </p>
             <p><i>
-                These are the little 1,2,3,4,5 page numbers in the top and bottom of the page
-                that lead you to all these other pages you never look at.
                 After all the best place to bury a body is page 2 of google search.
                 Seriously though, there absolutely are valid use cases for pagination in CRUD applications.
             </i></p>
             <p>
-                That's enough of my limited understanding of UX desing. Let's talk technical details.
+                That's enough of my limited understanding of UX design. Let's talk technical details.
             </p>
             
             <h2>State</h2>
             <p>
-                In a proper web application the URL changes as the user navigates. 
+                In a proper web application, the URL changes as the user navigates. 
                 This is great because they can shut their computer down and continue where they left off the next day. 
-                Also they can share an URL with a colleague and that colleague will most likely see the same thing on their screen. 
-                <i>Helps with remote and/or asynchroneous collaboration, often eliminates the need for screen sharing software, etc.</i>
+                Also, they can share a URL with a colleague and that colleague will most likely see the same thing on their screen. 
+                (Helps with remote and/or asynchroneous collaboration, often eliminates the need for screen sharing software, etc.)
             </p>
             <p>
                 On top of that, having the URL represent the <b>state</b> of the application is the correct thing to do.
@@ -92,8 +92,8 @@
             </p>
             <p><i>
                 The fact that the modern web is full of poorly build Single Page Applications (SPA) that don't respect this
-                basic principle, and instead have the user navigate to their destination every single time does not make the 
-                original idea of a URL is any less valid.
+                basic principle, and instead have the user navigate to their destination every single time, does not make the 
+                original idea of a URL any less valid.
             </i></p>
             <p>
                 And now, with no further ado, the proper way to put the state of the index page in the URL:
@@ -106,13 +106,13 @@
                 but now you know why. Great. Article over. We're done here.
             </p>
             <p>
-                Except. There is one little annoying problem.
+                Except... There is one little annoying problem.
             </p>
 
             <h2>The problem</h2>
             <p>
-                What happens when the user clicks the 'edit' button next to a "thing", edits the thing, and clicks the 'save and close' button. <br />
-                <i>You have a 'save and close', button right?</i>
+                What happens when the user clicks the 'edit' button next to a [thing], edits the [thing], and clicks the 'save and close' button. 
+                <i>You do have a 'save and close' button, right?</i>
             </p>
             <p>
                 You see, what the user <b>expects</b> to happen is that the 'save and close' button will take them back to the index page they
@@ -153,7 +153,7 @@
             </p>
             <p>
                 The first problem happens when you take a closer look at the index page you just returned to. 
-                The "thing" you just modified on the edit page appears unchanged.
+                The [thing] you just modified on the edit page appears unchanged.
                 Your save function works fine, but the user-agent didn't actually reload the list of things. That's not what the history is for.
                 Instead it retrieved the list it already had loaded from its own memory. Also know as cache.
             </p>
@@ -230,7 +230,7 @@
             <p>
                 This misunderstanding of how the web works will express itself 
                 as soon as the user opens the application in more than one tab or window.
-                Usually when another user sends them a deeplink to a specific "thing" they want them to edit
+                Usually when another user sends them a deeplink to a specific [thing] they want them to edit
                 when they already had the application open in a tab they forgot about. <br />
                 <i>This is not something you test for in your idealized happy-flow "quality assurance", but people in the real world tend to be this messy and unfocussed.</i>
             </p>
@@ -239,12 +239,12 @@
                 and it will get you similar outcomes.
             </p>
             <p><i>
-                Imagine you're a user, opening the application in one tab, going to the "things" index, page 5
-                then the edit page for "thing" number 420. <br />
+                Imagine you're a user, opening the application in one tab, going to the [things] index, page 5
+                then the edit page for [thing] number 420. <br />
                 Unfortunatly you get distracted by a colleague asking you about thing "421", so you a new tab,
-                navigate to "things" index, page 6, and then the edit page for "thing" number 421. 
+                navigate to [things] index, page 6, and then the edit page for [thing] number 421. 
                 After all that stress you get a coffee and chat with another colleague. <br />
-                You go back to your desk and continue on the first tab, finish editing "thing" number 420 and click 'save and close'.
+                You go back to your desk and continue on the first tab, finish editing [thing] number 420 and click 'save and close'.
                 This takes you to the things index, page 6, which does not contain thing 420. 
             <p><i>
             </i></p>
@@ -288,7 +288,7 @@
             </p>
             <p>
                 Vertical expansion is when more state is added to the index page. 
-                For example when the "things" have to be sorted by multiple properties.
+                For example when the [things] have to be sorted by multiple properties.
             </p>  
             <p>
                 Horizontal expansion is when another entity is added to the system,
@@ -313,11 +313,11 @@
             </i></p>
             <p><i>
                 The project manager immediatly throws your new colleague in the deep end, by having him make the CRUD 
-                interfaces for the new "thang" entity. Because "thang" is not much different from "thing" so new guy
+                interfaces for the new [thang] entity. Because [thang] is not much different from [thing] so new guy
                 just makes a similar interface with search, sort and paginate options.
             </i></p>
             <p><i>
-                The "thang" interfaces are finished quickly and the project manager is impressed. 
+                The [thang] interfaces are finished quickly and the project manager is impressed. 
                 New guy is great in his opinion. 
                 The job was done greate and now project manager get's his end-of-year bonus, because the feature was shipped
             </i></p>
