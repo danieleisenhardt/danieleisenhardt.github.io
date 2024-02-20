@@ -38,12 +38,24 @@
                 </li>
             </ol>
         </main>
-        <script>
-        window.onload = function() {
-	    setTimeout(function() {
-            	document.getElementById('query').focus();
-	    });
-        }
-        </script>
+
+<!-- my latest attempt at making autofocus work -->
+<script>
+window.onload = function() {
+setTimeout(function() {
+  document.getElementById('query').focus();
+}
+</script>
+
+<!-- Google Analytics goes on the bottom of the page, because I prefer it this way -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FBR8TKV4ZX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FBR8TKV4ZX');
+</script>
+
     </body>
 </html>
