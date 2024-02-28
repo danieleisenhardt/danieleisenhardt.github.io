@@ -106,7 +106,7 @@
                 but now you know why. Great. Article over. We're done here.
             </p>
             <p>
-                Except... There is one little annoying problem.
+                Except ... There is one little annoying problem.
             </p>
 
             <h2>The problem</h2>
@@ -139,10 +139,10 @@
                 The best I can do is list the three categories of solutions I have found and explain why they are all bad.
             </p>
 
-            <h3>1. abuse the user-agent's history functionality</h3>
+            <h3>1. Abuse the user-agent's history functionality</h3>
             <p>
-                You could have make an implementation that executes Javascript in the user-agent, 
-                which does the same thing as the user clicking the "back" button on their browser: <br />
+                You could make an implementation that executes Javascript in the user-agent, 
+                which does the same thing as the user clicking the "back" button in their browser: <br />
                 <code>history.back()</code> 
             </p>
             <p>
@@ -150,35 +150,38 @@
                 Ultimately, your application abuses the user-agent's history to send the user back to the previous page. 
             </p>
             <p>
-                The first problem happens when you take a closer look at the index page you just returned to. 
+                The first problem happens when you take a closer look at the index page you just returned to after clicking "save and close". 
                 The [thing] you just modified on the edit page appears unchanged.
                 Your save function works fine but the user-agent didn't actually reload the list of things. 
-                That's not what the history is for, instead it retrieved the list it had already loaded from its own memory also known as cache.
+                That's not what the history is for. 
+                Instead, it retrieved the list it had already loaded from its own memory, also known as cache.
             </p>
             <p>
-                You can "fix" this in many ways. In certain architectures a <code>cache-control</code> header might fix the problem.
-                In other cases you may write some custom Javascript that detects when the user has returned from the edit page.
+                You can "fix" this in many ways. In certain architectures, a <code>cache-control</code> header might fix the problem.
+                In other cases, you may write some custom Javascript that detects when the user has returned from the edit page.
                 This custom functionality then triggers a reload, either of the records on the page or the entire page,
                 depending on what your application architecture looks like.
             </p>
             <p>
-                However, when the user did <b>not</b> come from the index page, but a deeplink from outside your application. 
-                Your "save and close" button will send them back to wherever they came from. 
-                They will be sent to a page outside your application, when they were expecting to be taken to the index page.
+                However, when the user did <b>not</b> come from the index page but a deeplink from outside your application, 
+                your "save and close" button will send them back to wherever they came from, 
+                a page outside your application, while they were expecting to be taken to the index page.
             </p>
             <p>
-                Another <i>interesting</i> user experience would be when they opened the deeplink in a new tab or window.
-                Your user won't be taken anywhere when clicking the "save and close" button, because there is no previous page.
+                Another <i>interesting</i> user experience would be when opening the deeplink in a new tab or window.
+                Your will remain on the same page after clicking the "save and close" button because there is no previous page.
             </p>
             <p>
-                You could write more custom Javascript to solve this use-case also, but I can assure you:
+                You could also write more custom Javascript to solve this use case, but I can assure you:
                 your user will always find a way to use your application in a way you didn't expect. 
                 You will be putting a patch on a patch forever and the user experience will always be bad.
             </p>
             <p><i>
-                At this point, the user will say "the application sucks", 
-                the developers will say that the user is "using the application wrong",
-                and the product owner will say "this is only 1% of our users, we have more important features to build". <br />
+                At this point, the user says, "The application sucks", 
+                the developers say, "The user is using the application wrong",
+                and the product owner says, "This concerns only 1% of our users, we have more important features to build". 
+            </i></p>
+            <p><i>
                 Keep in mind that the product owner did not measure whether the amount of users encountering this
                 bad user experience really is 1%. That's not how they operate. 
                 They just pulled that number out of their rear end, 
@@ -188,38 +191,42 @@
                 Who is correct in this scenario? The user. <br />
             </i></p>
             <p><i>
-                I am a developer, I have often heard my colleagues say: <br /> 
+                I am a developer. I have often heard my colleagues say, <br /> 
                 "The user is using the application wrong." <br />
-                Here's what this translates to: <br />
-                "I'm bad at my job and don't understand the fundamentals." <br />
+                Here's what this translates to, <br />
+                "I'm bad at my job and don't understand the fundamentals."
+            </i></p>
+            <p><i>
                 If that hurt your feelings, get over yourself. <br />
             </i></p>
             <p><i>
                 The reason I'm this harsh is called 
                 <a href="https://en.wikipedia.org/wiki/Net_promoter_score">Net Promoter</a>.
-                It's an interesting topic in it's own right, but the bottom line is that a single
+                It's an interesting topic in its own right, but the bottom line is that a single
                 user thinking "the application sucks" cancels out ten users who believe your
                 application is the best thing ever. 
                 This one user will become a "detractor", telling their colleagues, friends and family
-                how much they hate your application and they should never use it.
+                how much they hate your application and that they should never use it.
                 They will actively lobby their boss to switch to a competitor and never do business
-                with your company again. <br /> 
+                with your company again. 
+            </i></p>
+            <p><i>
                 It doesn't matter how wrong or irrelevant you think this one user is,
                 they will persevere, they will win, your business will lose a client and you will
                 lose your job.
             </i><p>
 
-            <h3>2. store the query parameters in the session</h3>
+            <h3>2. Store the query parameters in the session</h3>
             <p>
-                Another common solution I have seen in demo projects, framework documentations and on forums is to 
+                Another common solution I have seen in demo projects, framework documentations, and on forums is to 
                 store the latest query parameters in the session. 
             </p>
             <p>
                 The "session" is a transient piece of state that exists for the combination of user agent and application.
                 Open the same application in a different browser and you have a different session, 
-                but two tabs or windows in the same browser will have the same session. <br />
+                but two tabs or windows in the same browser will have the same session. 
                 <i>Unless it's a private browser window. Your private interests can't be tracked using the session. 
-                We developers have 99 other ways to track you, but a session ain't one</i>
+                We developers have 99 other ways to track you, but a session ain't one.</i>
             </p>
             <p>
                 The problem here is that the session is storing the state of the index page at a fundamentally wrong level.
@@ -228,42 +235,44 @@
             <p>
                 This misunderstanding of how the web works will express itself 
                 as soon as the user opens the application in more than one tab or window.
-                Usually when another user sends them a deeplink to a specific [thing] they want them to edit
-                when they already had the application open in a tab they forgot about. <br />
+                This usually happens when another user sends them a deeplink to a specific [thing] they want them to edit,
+                but they already had the application open in a tab they forgot about.
+            </p>
+            <p>
                 <i>This is not something you test for in your idealized happy-flow "quality assurance", but people in the real world tend to be this messy and unfocussed.</i>
             </p>
             <p>
-                You could use a cookie, local storage, or any other piece of state the application maintains specific to the user-agent,
+                You could use a cookie, local storage, or any other piece of state the application maintains specific to the user-agent
                 and it will get you similar outcomes.
             </p>
             <p><i>
-                Imagine you're a user, opening the application in one tab, going to the [things] index, page 5
-                then the edit page for [thing] number 420. <br />
-                Unfortunatly you get distracted by a colleague asking you about thing "421", so you a new tab,
-                navigate to [things] index, page 6, and then the edit page for [thing] number 421. 
-                After all that stress you get a coffee and chat with another colleague. <br />
-                You go back to your desk and continue on the first tab, finish editing [thing] number 420 and click "save and close".
-                This takes you to the things index, page 6, which does not contain thing 420. 
+                Imagine you're a user, opening the application in one tab going to the [things] index, then to page 5,
+                then the edit page for [thing] 420. 
+                Unfortunatly, you get distracted by a colleague asking you about [thing] 421, so you open a new tab,
+                navigate to [things] index, then to page 6, and then to the edit page for [thing] 421. 
+                After all that stress, you get a coffee and chat with another colleague. 
+                You go back to your desk and continue on the first tab, finish editing [thing] 420, and click "save and close".
+                This takes you to the [things] index, page 6, which does not contain thing 420. 
             <p><i>
             </i></p>
                 Worst. Application. Ever. 
             <p><i>
             </i></p>
-                Time to tell your boss how much you hate it and repeat to do so until they licence a similar application from a competing vendor.
+                Time to tell your boss how much you hate it and repeat saying so until they licence a similar application from a competing vendor.
             </i></p>
 
-            <h3>3. do a relay run with the query parameters</h3>
+            <h3>3. Do a relay run with the query parameters</h3>
             <p>
-                There is a third way which does provide the <b>correct</b> user experience: <br />
-                Passing the index query parameters along through every step of the edit process.
+                There is a third way which does provide the <b>correct</b> user experience &#8211; <br />
+                passing the index query parameters along through every step of the edit process.
             </p>
             <p>
                 If the query string is embedded into the edit button, that state will only be forwarded
                 when the user clicks the button. 
-                Therefore the application will not send the user back to any location outside of the application.
+                Therefore, the application will not send the user back to any location outside of the application.
             </p>
             <p>
-                The same goes for the form: If the save action includes the index state, passsed along from the edit button
+                The same goes for the form &#8211; if the save action includes the index state, passsed along from the edit button,
                 only that form in that specific tab will have the application redirect to that specific index page.
                 No other tabs or windows can be affected.
             </p>
@@ -275,22 +284,22 @@
                 <a href="https://developer.mozilla.org/en-US/docs/Web/API/History">user-agent's history</a>,
                 then retrieving the state on the edit page. 
                 This will have a similar effect where the state is specific to the tab or window and the "save and close" button will not
-                send the user outside of the application. <br />
+                send the user outside of the application.
             </p>
             <p>
-                So why is this a bad solution, it provides the correct user experience and respects the principles of what a URL is, right?
+                So why is this a bad solution? It provides the correct user experience and respects the principles of what a URL is, right?
             </p>
             <p>
-                Yes. However it has a tendency to quietly degrade when this pattern is extended horizontally or vertically. 
-                <i>Don't worry if this terminology confuses you; I just made it up. I will explain what I mean by this below.</i>
+                Yes. However, it has a tendency to quietly degrade when this pattern is extended horizontally or vertically. 
+                <i>Don't worry if this terminology confuses you; I just made it up. I will explain what I mean below.</i>
             </p>
             <p>
                 Vertical expansion is when more state is added to the index page. 
-                For example when the [things] have to be sorted by multiple properties.
+                For example, when the [things] have to be sorted by multiple properties.
             </p>  
             <p>
                 Horizontal expansion is when another entity is added to the system,
-                which needs it's own CRUD interfaces, including an index and an edit page.
+                which needs its own CRUD interfaces, including an index and an edit page.
             <p>
             <p>
                 Because applications have a tendency to grow, these use cases are easily missed by quality assurance,
@@ -298,33 +307,33 @@
                 your solution to this problem will be brittle.
             </p>
             <p><i>
-                In other words you will write a solution that perfectly adheres to what the user expects,
+                In other words, you will write a solution that perfectly adheres to what the user expects,
                 life will be good for a while. Users love your CRUD application and you manage to inform
                 your colleagues well enough about your solution.
             </i></p>
             <p><i>
-                However, a year or two from now some junior developer starts on his first day, way out of his depth.
+                A year or two from now some junior developer starts on his first day, way out of his depth.
                 It's not his fault, your department head was convinced to hire him 
                 by a recruitment agency which takes a margin larger than the guy's salary.
-                This happens while your on a two week vacation after a year without any time off by the way, 
+                This happens while you are on a two week vacation after a year without any time off, 
                 so there's nothing you can do to help him get onboarded.
             </i></p>
             <p><i>
-                The project manager immediatly throws your new colleague in the deep end, by having him make the CRUD 
+                The project manager immediatly throws your new colleague in the deep end by having him make the CRUD 
                 interfaces for the new [thang] entity. Because [thang] is not much different from [thing] so new guy
                 just makes a similar interface with search, sort and paginate options.
             </i></p>
             <p><i>
                 The [thang] interfaces are finished quickly and the project manager is impressed. 
                 New guy is great in his opinion. 
-                The job was done greate and now project manager get's his end-of-year bonus, because the feature was shipped
+                The job was done and now the project manager gets his end-of-year bonus, because the feature was shipped.
             </i></p>
             <p><i>
-                We all know project managers only ever tests the happy flows of the application.
+                We all know project managers only ever test the happy flows of the application.
             </i></p>
             <p><i>
                 A month later the company loses a big client, because, you guessed it, the user experience has degraded.
-                Also the client was already unhappy with the product for reasons outside of your control. 
+                Also, the client was already unhappy with the product for reasons outside of your control. 
                 This was just the straw that broke the camel's back.
             </i></p>
             <p><i>
@@ -334,11 +343,11 @@
             
             <h2>Conclusion</h2>
             <p>
-                Unfortunatly all of the above solutions are bad in their own way.
+                Unfortunatly, all of the above solutions are bad in their own way.
                 If there is no consensus on how to do this right after decades, 
                 there won't be one any time soon.
-                There is no free lunch, only tradeoffs. 
-                So pick whatever bad solution is the least bad for your usecase.
+                There is no free lunch, only trade-offs. 
+                So pick whatever bad solution is the least bad for your use case.
             </p>
         </main>
         <footer>
