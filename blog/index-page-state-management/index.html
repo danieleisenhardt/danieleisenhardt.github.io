@@ -18,7 +18,7 @@
             </p>
             <p>
                 User interfaces reflect this too. The menu has a button labeled "things" 
-                which takes the user to an 'index page'. 
+                which takes the user to an "index page". 
                 This index page has a button to <b>create</b> a new [thing], 
                 a list of [things], which the user can <b>read</b>, 
                 and buttons next to each individual [thing] to <b>update</b> and <b>delete</b> that specific "thing". 
@@ -111,14 +111,14 @@
 
             <h2>The problem</h2>
             <p>
-                What happens when the user clicks the 'edit' button next to a [thing], edits the [thing], and clicks the 'save and close' button. 
-                <i>You do have a 'save and close' button, right?</i>
+                What happens when the user clicks the "edit" button next to a [thing], edits the [thing], and clicks the "save and close" button. 
+                <i>You do have a "save and close" button, right?</i>
             </p>
             <p>
-                You see, what the user <b>expects</b> to happen is that the 'save and close' button will take them back to the index page they
+                You see, what the user <b>expects</b> to happen is that the "save and close" button will take them back to the index page they
                 came from. 
                 The <b>same</b> index page they came from. 
-                With the same search, sort, and paginate parameters they used before they clicked that 'edit' button.
+                With the same search, sort, and paginate parameters they used before they clicked that "edit" button.
             </p>
             <p>
                 Unfortunatly, after searching the internet, asking ChatGPT, and asking experts, I have come to the conclusion that
@@ -142,7 +142,7 @@
             <h3>1. abuse the user-agent's history functionality</h3>
             <p>
                 You could have make an implementation that executes Javascript in the user-agent, 
-                which does the same thing as the user clicking the 'back' button on their browser: <br />
+                which does the same thing as the user clicking the "back" button on their browser: <br />
                 <code>history.back()</code> 
             </p>
             <p>
@@ -163,12 +163,12 @@
             </p>
             <p>
                 However, when the user did <b>not</b> come from the index page, but a deeplink from outside your application. 
-                Your 'save and close' button will send them back to wherever they came from. 
+                Your "save and close" button will send them back to wherever they came from. 
                 They will be sent to a page outside your application, when they were expecting to be taken to the index page.
             </p>
             <p>
                 Another <i>interesting</i> user experience would be when they opened the deeplink in a new tab or window.
-                Your user won't be taken anywhere when clicking the 'save and close' button, because there is no previous page.
+                Your user won't be taken anywhere when clicking the "save and close" button, because there is no previous page.
             </p>
             <p>
                 You could write more custom Javascript to solve this use-case also, but I can assure you:
@@ -200,7 +200,7 @@
                 It's an interesting topic in it's own right, but the bottom line is that a single
                 user thinking "the application sucks" cancels out ten users who believe your
                 application is the best thing ever. 
-                This one user will become a 'detractor', telling their colleagues, friends and family
+                This one user will become a "detractor", telling their colleagues, friends and family
                 how much they hate your application and they should never use it.
                 They will actively lobby their boss to switch to a competitor and never do business
                 with your company again. <br /> 
@@ -215,7 +215,7 @@
                 store the latest query parameters in the session. 
             </p>
             <p>
-                The 'session' is a transient piece of state that exists for the combination of user agent and application.
+                The "session" is a transient piece of state that exists for the combination of user agent and application.
                 Open the same application in a different browser and you have a different session, 
                 but two tabs or windows in the same browser will have the same session. <br />
                 <i>Unless it's a private browser window. Your private interests can't be tracked using the session. 
@@ -242,7 +242,7 @@
                 Unfortunatly you get distracted by a colleague asking you about thing "421", so you a new tab,
                 navigate to [things] index, page 6, and then the edit page for [thing] number 421. 
                 After all that stress you get a coffee and chat with another colleague. <br />
-                You go back to your desk and continue on the first tab, finish editing [thing] number 420 and click 'save and close'.
+                You go back to your desk and continue on the first tab, finish editing [thing] number 420 and click "save and close".
                 This takes you to the things index, page 6, which does not contain thing 420. 
             <p><i>
             </i></p>
@@ -274,7 +274,7 @@
                 If you are building an SPA, there are similar solutions possible by storing the index page state in the 
                 <a href="https://developer.mozilla.org/en-US/docs/Web/API/History">user-agent's history</a>,
                 then retrieving the state on the edit page. 
-                This will have a similar effect where the state is specific to the tab or window and the 'save and close' button will not
+                This will have a similar effect where the state is specific to the tab or window and the "save and close" button will not
                 send the user outside of the application. <br />
             </p>
             <p>
