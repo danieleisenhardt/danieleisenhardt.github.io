@@ -131,7 +131,7 @@
             <h2>The (bad) solutions</h2>
             <p>
                 Index pages have been a thing for decades. 
-                Why the many engineers working in web development for all this time have not come up with a convention
+                Why the countless engineers working in web development all this time have not come up with a convention
                 on how to solve this problem is a mystery to me. 
                 And I do not have a perfect answer to it either.
             </p>
@@ -141,21 +141,19 @@
 
             <h3>1. abuse the user-agent's history functionality</h3>
             <p>
-                You could have make an implementation that executes Javascript in the user-agent: 
-            </p>
-            <code>history.back()</code> 
-            <p>
-                Which does the same thing as the user clicking the 'back' button on their browser.
+                You could have make an implementation that executes Javascript in the user-agent, 
+                which does the same thing as the user clicking the 'back' button on their browser: <br />
+                <code>history.back()</code> 
             </p>
             <p>
                 Often this is abstracted away by many layers of SPA framework, but that's irrelevant. 
-                What ultimately happens under the hood is the application abuses the user-agent's history to send the user back to the previous page. 
+                Ultimately, your application abuses the user-agent's history to send the user back to the previous page. 
             </p>
             <p>
                 The first problem happens when you take a closer look at the index page you just returned to. 
                 The [thing] you just modified on the edit page appears unchanged.
-                Your save function works fine, but the user-agent didn't actually reload the list of things. That's not what the history is for.
-                Instead it retrieved the list it already had loaded from its own memory. Also know as cache.
+                Your save function works fine but the user-agent didn't actually reload the list of things. 
+                That's not what the history is for, instead it retrieved the list it had already loaded from its own memory also known as cache.
             </p>
             <p>
                 You can "fix" this in many ways. In certain architectures a <code>cache-control</code> header might fix the problem.
